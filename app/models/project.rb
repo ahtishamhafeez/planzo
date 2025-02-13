@@ -6,19 +6,20 @@ class Project < ApplicationRecord
   has_many :users, through: :project_users
 
   validates :name, :start_time, presence: true
+  before_save :save_end_time, if: -> { duration.present? && new_record? }
+
+  scope :active, -> { where("start_time::date <= ? AND end_date::date >= ?", Date.today, Date.today) }
 
   def is_active
-    start_time <= Time.now && Time.now <= end_time
+    Date.today <= end_date
   end
 
-  def end_time
-    return nil if duration.blank?
-
-    @end_time ||= start_time.to_date + duration['period'].send(duration['unit'].downcase)
+  def save_end_time
+    self.end_date = start_time.to_date + duration["period"].send(duration["unit"].downcase)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name start_time end_time duration description]
+    %w[id name start_time end_date duration description]
   end
 
   def self.ransackable_associations(_auth_object = nil)

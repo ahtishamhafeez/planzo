@@ -16,7 +16,8 @@ module Durationable
   def validate_duration_format
     return if duration.is_a?(Hash) && duration.key?('unit') && duration.key?('period')
 
-    errors.add(:duration, "must be a JSON object with 'unit' and 'period' keys")
+    errors.add(:duration, "must be a JSON object with 'unit' as string and 'period' as integer keys")
+    throw :abort
   end
 
   private

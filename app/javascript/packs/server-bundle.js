@@ -1,8 +1,11 @@
-import ReactOnRails from 'react-on-rails';
+import "./../generated/server-bundle-generated.js"
+import ReactOnRails from "react-on-rails";
+import Auth from "../bundles/ror_components/Auth";
+import Admin from "../bundles/ror_components/Admin";
+import User from "../bundles/ror_components/User";
 
-import HelloWorld from '../bundles/HelloWorld/components/HelloWorldServer';
-
-// This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
-  HelloWorld,
+  Auth,
+  Admin,
+  User
 });
