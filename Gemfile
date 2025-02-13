@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'bcrypt', '~> 3.1', '>= 3.1.20'
 gem 'foreman'
 gem 'grape', '~> 2.2'
 gem 'grape_on_rails_routes', '~> 0.3.2'
@@ -18,6 +19,7 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mswin mswin64 mingw x64_mingw jruby]
+gem 'rack-cors'
 
 gem 'bootsnap', require: false
 
@@ -27,6 +29,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'rubocop-rails-omakase', require: false
   gem 'simplecov', require: false
 end
@@ -42,4 +46,6 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'shakapacker', '= 8.1'
+gem "shakapacker", "= 8.1"
+
+gem "database_cleaner-active_record", "~> 2.2", :group => :test

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_secure_password
   has_many :project_users, dependent: :destroy
   has_many :projects, through: :project_users
   has_many :tasks, through: :project_users
@@ -8,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { scope: :role }
   validates :role, presence: true
 
-  enum role: { user: 'user', admin: 'admin' }, _suffix: true
+  enum role: { user: 0, admin: 1 }, _suffix: true
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id first_name last_name email role]

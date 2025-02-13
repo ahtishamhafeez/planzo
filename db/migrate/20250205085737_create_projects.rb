@@ -4,6 +4,7 @@ class CreateProjects < ActiveRecord::Migration[7.2]
       t.string :name, null: false, index: { unique: true }
       t.datetime :start_time, null: false
       t.jsonb :duration, null: false, index: true
+      t.datetime :end_date, index: true
       t.text :description
       t.timestamps
     end
